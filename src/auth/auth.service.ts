@@ -23,13 +23,13 @@ export class AuthService {
     return this.usersRepository.save(user);
   }
 
-  async login(loginUserDto: LoginUserDto) {
+  async validateUser(email: string, password: string) {
     const user = await this.usersRepository.findOne(undefined, {
-      where: {email: loginUserDto.email}
+      where: {email: email}
     });
 
     if (user) {
-      const isMatch = await bcrypt.compare(loginUserDto.password, user.password);
+      const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
         return user;
       } else {  
