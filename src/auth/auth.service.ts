@@ -6,11 +6,13 @@ import { Repository } from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
 import { LoginUserDto } from 'src/users/dto/login-user.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User) private usersRepository: Repository<User>
+    @InjectRepository(User) private usersRepository: Repository<User>,
+    private jwtService: JwtService
   ) { }
     
   async register(registerUserDto: RegisterUserDto) {
@@ -39,5 +41,12 @@ export class AuthService {
     else {
       throw new HttpException('Usuario não encontrado!', HttpStatus.NOT_FOUND);
     }
+  }
+
+  async login(user: User) {
+    const payload = { email: user.email, sub: user.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 }
