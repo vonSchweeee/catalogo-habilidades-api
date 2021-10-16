@@ -14,10 +14,11 @@ export class AuthService {
 
   async register(registerUserDto: RegisterUserDto) {
     const hashPassword = await bcrypt.hash(registerUserDto.password, 10);
-    return this.usersRepository.save({
+    const user = new User({
       email: registerUserDto.email,
       password: hashPassword,
       name: registerUserDto.name
     });
+    return this.usersRepository.save(user);
   }
 }
