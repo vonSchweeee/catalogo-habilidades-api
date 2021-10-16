@@ -1,4 +1,5 @@
-import { IsEmail } from 'class-validator';
+import { Exclude } from 'class-transformer';
+import { IsEmail, MinLength } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
@@ -13,6 +14,12 @@ export class User {
   @IsEmail()
   email: string;
 
-  @Column() 
+  @Column()
+  @MinLength(6)
+  @Exclude()
   password: string;
+
+  constructor(partial: Partial<User>) {
+    Object.assign(this, partial);
+  }
 }
