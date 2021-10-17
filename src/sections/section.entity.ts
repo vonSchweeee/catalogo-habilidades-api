@@ -11,4 +11,8 @@ export class Section {
 
   @OneToMany(() => Category, category => category.section)
   categories: Category[];
+
+  constructor(partial: Partial<Section>) {
+    Object.assign(this, partial);
+  }
 }
