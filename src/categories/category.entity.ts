@@ -1,5 +1,6 @@
+import { Section } from 'src/sections/section.entity';
 import { Skill } from 'src/skills/skill.entity';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('category')
 export class Category {
@@ -8,6 +9,9 @@ export class Category {
 
   @Column()
   title: string;
+
+  @ManyToOne(() => Section)
+  section: Section;
 
   @ManyToMany(() => Skill)
   @JoinTable()
