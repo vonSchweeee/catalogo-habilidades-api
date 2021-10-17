@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { IsEmail, MinLength } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Skill } from 'src/skills/skill.entity';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
 export class User {
@@ -19,6 +20,10 @@ export class User {
   @Exclude()
   password: string;
 
+  @ManyToMany(() => Skill)
+  @JoinTable()
+  skills: Skill[];
+  
   constructor(partial: Partial<User>) {
     Object.assign(this, partial);
   }
