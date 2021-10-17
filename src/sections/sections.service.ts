@@ -11,7 +11,7 @@ export class SectionsService {
     @InjectRepository(Section) private sectionRepository: Repository<Section>
   ) { }
 
-  create(createSectionDto: CreateSectionDto) {
+  async create(createSectionDto: CreateSectionDto) {
     return this.sectionRepository.save(createSectionDto);
   }
 
