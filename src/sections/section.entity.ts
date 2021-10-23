@@ -1,4 +1,3 @@
-import { IsDefined } from 'class-validator';
 import { Category } from 'src/categories/category.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -8,7 +7,6 @@ export class Section {
   id: number;
 
   @Column()
-  @IsDefined()
   title: string;
 
   @OneToMany(() => Category, category => category.section)

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RegisterUserDto } from './dto/register-user.dto';
@@ -10,10 +10,6 @@ export class UsersService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>
   ) { }
-
-  register(createUserDto: RegisterUserDto) {
-    return this.usersRepository.save(createUserDto);
-  }
 
   findAll() {
     return this.usersRepository.find();

@@ -11,13 +11,13 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
   @IsEmail()
+  @Column({unique: true})
   email: string;
 
-  @Column()
   @MinLength(6)
   @Exclude()
+  @Column()
   password: string;
 
   @ManyToMany(() => Skill)

@@ -4,11 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { SkillsModule } from './skills/skills.module';
 import { CategoriesModule } from './categories/categories.module';
 import { SectionsModule } from './sections/sections.module';
+import { HttpExceptionFilter } from './filter/http-exception.filter';
+import { SqlErrorFilter } from './filter/sql-error.filter';
 
 @Module({
   imports: [
@@ -35,7 +37,15 @@ import { SectionsModule } from './sections/sections.module';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
-    }
+    },
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: SqlErrorFilter,
+    },
   ],
 })
 export class AppModule {}
