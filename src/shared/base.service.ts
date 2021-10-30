@@ -16,7 +16,7 @@ export class BaseService<Entity extends BaseEntity, CreateDto, UpdateDto> {
   }
 
   findOne(id: number) {
-    return this.findOne(id);
+    return this.repository.findOne(id);
   }
 
   update(id: number, updateDto: UpdateDto) {
