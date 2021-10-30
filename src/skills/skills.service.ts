@@ -24,7 +24,8 @@ export class SkillsService {
   }
 
   update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill`;
+    const skill = new Skill(updateSkillDto);
+    return this.skillsRepository.update(id, skill);
   }
 
   remove(id: number) {
