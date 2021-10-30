@@ -1,33 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { BaseService } from 'src/shared/base.service';
 import { Repository } from 'typeorm';
 import { CreateUserSkillDto } from './dto/create-usersskill.dto';
 import { UpdateUsersSkillDto } from './dto/update-usersskill.dto';
 import { UserSkill } from './userskill.entity';
 
 @Injectable()
-export class UsersSkillsService {
+export class UsersSkillsService extends BaseService<UserSkill, CreateUserSkillDto, UpdateUsersSkillDto> {
   constructor(
-    @InjectRepository(UserSkill) private skillsRepository: Repository<UserSkill>
-  ) { }
-
-  create(createUsersSkillDto: CreateUserSkillDto) {
-    return 'This action adds a new usersskill';
-  }
-
-  findAll() {
-    return `This action returns all usersskills`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} usersskill`;
-  }
-
-  update(id: number, updateUsersSkillDto: UpdateUsersSkillDto) {
-    return `This action updates a #${id} usersskill`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} usersskill`;
+    @InjectRepository(UserSkill) private usersSkillsRepository: Repository<UserSkill>
+  ) { 
+    super(usersSkillsRepository);
   }
 }
