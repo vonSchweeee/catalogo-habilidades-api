@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import { BaseEntity } from './base.entity';
 
-export class BaseService<Entity extends BaseEntity, CreateDto, UpdateDto> {
+export abstract class BaseCrudService<Entity extends BaseEntity, CreateDto, UpdateDto> {
   constructor(
     private repository: Repository<Entity>
   ) { }

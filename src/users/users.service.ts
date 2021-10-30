@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { BaseService } from 'src/shared/base.service';
+import { BaseCrudService } from 'src/shared/base-crud.service';
 import { Repository } from 'typeorm';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 
 @Injectable()
-export class UsersService extends BaseService<User, RegisterUserDto, UpdateUserDto> {
+export class UsersService extends BaseCrudService<User, RegisterUserDto, UpdateUserDto> {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>
   ) { 
