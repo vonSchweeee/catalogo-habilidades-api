@@ -4,7 +4,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('section')
 export class Section extends BaseIdEntity {
-  @Column()
+  @Column({unique: true})
   title: string;
 
   @OneToMany(() => Category, category => category.section)

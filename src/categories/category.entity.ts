@@ -5,13 +5,13 @@ import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity('category')
 export class Category extends BaseIdEntity {
-  @Column()
+  @Column({unique: true})
   title: string;
 
   @Column()
   sectionId: number;
 
-  @ManyToOne(() => Section)
+  @ManyToOne(() => Section, section => section.categories, {eager: true})
   section: Section;
 
   @ManyToMany(() => Skill)
