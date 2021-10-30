@@ -2,8 +2,9 @@ import { Entity, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { User } from '../users/user.entity';
 import { Skill } from "../skills/skill.entity";
 import { Max, Min } from 'class-validator';
+import { BaseTimestampEntity } from '../shared/base-timestamp.entity';
 @Entity()
-export class UserSkill {
+export class UserSkill extends BaseTimestampEntity {
   @PrimaryColumn('int')
   public userId!: number;
 
@@ -22,6 +23,7 @@ export class UserSkill {
   public skill!: Skill;
 
   constructor(partial: Partial<UserSkill>) {
+    super(partial);
     Object.assign(this, partial);
   }
 }
