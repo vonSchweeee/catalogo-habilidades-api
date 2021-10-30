@@ -1,5 +1,5 @@
+import { IsNotEmpty, MinLength } from 'class-validator';
 import { Category } from 'src/categories/category.entity';
-import { User } from 'src/users/user.entity';
 import { UserSkill } from 'src/usersskills/userskill.entity';
 import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -9,10 +9,15 @@ export class Skill {
   id: number;
 
   @Column()
+  @IsNotEmpty()
+  @MinLength(3)
+  title: string;
+
+  @Column()
   description: string;
 
   @OneToMany(() => UserSkill, userSkill => userSkill.skill)
-  public usersSkills!: UserSkill[];
+  usersSkills!: UserSkill[];
 
   @ManyToMany(() => Category)
   categories: Category[];

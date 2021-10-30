@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UsersSkillsService } from './usersskills.service';
-import { CreateUsersskillDto } from './dto/create-usersskill.dto';
-import { UpdateUsersskillDto } from './dto/update-usersskill.dto';
+import { CreateUserSkillDto } from './dto/create-usersskill.dto';
+import { UpdateUsersSkillDto } from './dto/update-usersskill.dto';
 
 @Controller('usersskills')
 export class UsersSkillsController {
   constructor(private readonly usersskillsService: UsersSkillsService) {}
 
   @Post()
-  create(@Body() createUsersskillDto: CreateUsersskillDto) {
+  create(@Body() createUsersskillDto: CreateUserSkillDto) {
     return this.usersskillsService.create(createUsersskillDto);
   }
 
@@ -23,7 +23,7 @@ export class UsersSkillsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUsersskillDto: UpdateUsersskillDto) {
+  update(@Param('id') id: string, @Body() updateUsersskillDto: UpdateUsersSkillDto) {
     return this.usersskillsService.update(+id, updateUsersskillDto);
   }
 

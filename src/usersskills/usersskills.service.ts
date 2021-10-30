@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUsersskillDto } from './dto/create-usersskill.dto';
-import { UpdateUsersskillDto } from './dto/update-usersskill.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { CreateUserSkillDto } from './dto/create-usersskill.dto';
+import { UpdateUsersSkillDto } from './dto/update-usersskill.dto';
+import { UserSkill } from './userskill.entity';
 
 @Injectable()
 export class UsersSkillsService {
-  create(createUsersskillDto: CreateUsersskillDto) {
+  constructor(
+    @InjectRepository(UserSkill) private skillsRepository: Repository<UserSkill>
+  ) { }
+
+  create(createUsersSkillDto: CreateUserSkillDto) {
     return 'This action adds a new usersskill';
   }
 
@@ -16,7 +23,7 @@ export class UsersSkillsService {
     return `This action returns a #${id} usersskill`;
   }
 
-  update(id: number, updateUsersskillDto: UpdateUsersskillDto) {
+  update(id: number, updateUsersSkillDto: UpdateUsersSkillDto) {
     return `This action updates a #${id} usersskill`;
   }
 

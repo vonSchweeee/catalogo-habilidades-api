@@ -12,15 +12,15 @@ export class SkillsService {
   ) { }
 
   create(createSkillDto: CreateSkillDto) {
-    return 'This action adds a new skill';
+    return this.skillsRepository.save(createSkillDto);
   }
 
   findAll() {
-    return `This action returns all skills`;
+    return this.skillsRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} skill`;
+    return this.skillsRepository.findOne(id);
   }
 
   update(id: number, updateSkillDto: UpdateSkillDto) {

@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, PrimaryColumn, Check } from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryColumn } from 'typeorm';
 import { User } from '../users/user.entity';
 import { Skill } from "../skills/skill.entity";
 import { Max, Min } from 'class-validator';
@@ -20,4 +20,8 @@ export class UserSkill {
 
   @ManyToOne(() => Skill, skill => skill.usersSkills)
   public skill!: Skill;
+
+  constructor(partial: Partial<UserSkill>) {
+    Object.assign(this, partial);
+  }
 }
