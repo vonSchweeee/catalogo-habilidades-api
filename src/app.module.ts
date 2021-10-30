@@ -11,6 +11,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { SectionsModule } from './sections/sections.module';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { SqlErrorFilter } from './filter/sql-error.filter';
+import { UsersSkillsModule } from './usersskills/usersskills.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { SqlErrorFilter } from './filter/sql-error.filter';
     SkillsModule,
     CategoriesModule,
     SectionsModule,
+    UsersSkillsModule,
   ],
   controllers: [AppController],
   providers: [
