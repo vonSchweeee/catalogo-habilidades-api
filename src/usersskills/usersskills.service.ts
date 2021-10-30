@@ -10,7 +10,7 @@ import { UserSkill } from './userskill.entity';
 export class UsersSkillsService extends BaseService<UserSkill, CreateUserSkillDto, UpdateUsersSkillDto> {
   constructor(
     @InjectRepository(UserSkill) private usersSkillsRepository: Repository<UserSkill>
-  ) { 
+  ) {
     super(usersSkillsRepository);
   }
 }

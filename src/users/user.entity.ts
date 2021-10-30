@@ -19,7 +19,7 @@ export class User extends BaseIdTimestampEntity {
   password: string;
 
   @OneToMany(() => UserSkill, userSkill => userSkill.user)
-  public usersSkills!: UserSkill[];
+  public usersSkills!: Promise<UserSkill[]>;
   
   constructor(partial: Partial<User>) {
     super(partial);

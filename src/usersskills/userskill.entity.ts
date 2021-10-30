@@ -16,10 +16,10 @@ export class UserSkill extends BaseTimestampEntity {
   @Column('tinyint')
   public nivel!: number;
 
-  @ManyToOne(() => User, user => user)
+  @ManyToOne(() => User, user => user.usersSkills, {eager: true})
   public user!: User;
 
-  @ManyToOne(() => Skill, skill => skill.usersSkills)
+  @ManyToOne(() => Skill, skill => skill.usersSkills, {eager: true})
   public skill!: Skill;
 
   constructor(partial: Partial<UserSkill>) {

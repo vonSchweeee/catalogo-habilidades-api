@@ -13,4 +13,16 @@ export class UsersService extends BaseService<User, RegisterUserDto, UpdateUserD
   ) { 
     super(usersRepository);
   }
+
+  async getWithSkills(id: number) {
+    const user = await this.usersRepository.findOne(id);
+    const usersSkills = await user.usersSkills;
+    const retorno = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      usersSkills: usersSkills
+    };
+    return retorno;
+  }
 }
