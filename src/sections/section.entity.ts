@@ -1,11 +1,9 @@
 import { Category } from 'src/categories/category.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseIdEntity } from 'src/shared/base-id.entity';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('section')
-export class Section {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Section extends BaseIdEntity {
   @Column()
   title: string;
 
@@ -13,6 +11,7 @@ export class Section {
   categories: Category[];
 
   constructor(partial: Partial<Section>) {
+    super(partial);
     Object.assign(this, partial);
   }
 }

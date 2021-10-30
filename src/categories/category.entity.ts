@@ -1,12 +1,10 @@
 import { Section } from 'src/sections/section.entity';
+import { BaseIdEntity } from 'src/shared/base-id.entity';
 import { Skill } from 'src/skills/skill.entity';
-import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity('category')
-export class Category {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Category extends BaseIdEntity {
   @Column()
   title: string;
 

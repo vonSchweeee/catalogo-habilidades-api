@@ -1,14 +1,11 @@
 import { Exclude } from 'class-transformer';
 import { IsEmail, MinLength } from 'class-validator';
-import { Skill } from 'src/skills/skill.entity';
+import { BaseIdTimestampEntity } from 'src/shared/base-id-timestamp.entity';
 import { UserSkill } from 'src/usersskills/userskill.entity';
-import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 
 @Entity('user')
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends BaseIdTimestampEntity {
   @Column()
   name: string;
 
@@ -25,6 +22,7 @@ export class User {
   public usersSkills!: UserSkill[];
   
   constructor(partial: Partial<User>) {
+    super(partial);
     Object.assign(this, partial);
   }
 }
